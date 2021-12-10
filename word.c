@@ -1,4 +1,3 @@
-/* 11.09.21 m3103 - lab N1 by Ann Prichnencko */
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
@@ -9,6 +8,7 @@ void Text(FILE* fin) {
 	while ((c = fgetc(fin)) != EOF) {
 		printf("%c", c);
 	}
+	
 	rewind(fin);
 }
 
@@ -20,6 +20,7 @@ int LinesCount(FILE* fin) {
 			lines++;
 		}
 	}
+	
 	rewind(fin);
 	return lines;
 }
@@ -47,6 +48,7 @@ int WordsCount(FILE* fin) {
 	if (prev != ' ' || prev != '\n' || prev != '\t') {
 		words--;
 	}
+	
 	rewind(fin);
 	return words;
 }
@@ -60,11 +62,11 @@ int BytesCount(FILE* fin) {
 		}
 		bytes++;
 	}
+	
 	rewind(fin);
 	return bytes;
 }
 
-// [0] - exe [1] - option  [2] - name of file
 int main(int argc, char** argv) {
 	FILE *fin;
 	if (!(fin = fopen(argv[2], "r"))) {
