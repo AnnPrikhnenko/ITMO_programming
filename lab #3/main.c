@@ -15,7 +15,6 @@ typedef struct List {
 	struct List* next;
 } List;
 
-/* Queue - FIFO */
 void push(List** top, time_t new_value) {
 	List* new_list = (List*)malloc(sizeof(List));
 
@@ -85,7 +84,6 @@ void pars_time_str(char* str, List** end) {
 	time.tm_mon = num_of_month(month);
 	time.tm_isdst = -1;
 	time.tm_year -= 1900;
-
 	time_t tmp;
 	tmp = mktime(&time);
 
@@ -97,18 +95,12 @@ int get_status(char* str, List** end) {
 	strcpy(old_str, str);
 	char* new_str;
 
-	/* remote_addr */
 	new_str = strtok(old_str, "[");
-
-	/* local time */
 	new_str = strtok(NULL, "]");
 	pars_time_str(new_str, end);
-
-	/* request */
 	new_str = strtok(NULL, "\"");
 	new_str = strtok(NULL, "\"");
 
-	/* status */
 	int status = 0;
 	status = atoi(strtok(NULL, " "));
 	return status;
@@ -129,8 +121,7 @@ int main() {
 	int period = 0;
 	printf("Input period of time: ");
 	scanf("%d", &period);
-	
-	/* queue */
+
 	List* list = (List*)malloc(sizeof(List));
 	list->value = 0;
 	list->next = NULL;
@@ -141,7 +132,7 @@ int main() {
 		a = get_status(cur_str, &end);
 		if (a / 100 == 5) {
 			num_of_5xx++;
-			fprintf(fout, "¹%i %s", num_of_5xx, cur_str);
+			fprintf(fout, "ï¿½%i %s", num_of_5xx, cur_str);
 		}
 
 		num_of_request++;
