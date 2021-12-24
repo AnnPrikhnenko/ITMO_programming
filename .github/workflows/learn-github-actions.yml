@@ -10,4 +10,6 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - run: gcc -o a.exe *.c
+      - run: gcc -o a.exe "lab #1/*.c"
+      - run: gcc -o a.exe "lab #2/*.c"
+      - run: gcc -o a.exe "lab #3/*.c"
